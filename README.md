@@ -12,12 +12,10 @@ You have to compile the sources *(but cannot remember how)*.
 
 * Conio, a terminal graphic library
 
-## Contributing
-
 ## Authors
 
-* **Damien Djomby** - [Nowtryz]](https://github.com/nowtryz),
-* **Olivier Benaber** - [TERRUS]](https://github.com/TERRUSS)
+* **Damien Djomby** - [Nowtryz](https://github.com/nowtryz),
+* **Olivier Benaber** - [TERRUS](https://github.com/TERRUSS)
 
 ## License
 
