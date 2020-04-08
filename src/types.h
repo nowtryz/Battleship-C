@@ -3,15 +3,17 @@
 
 #include <stdbool.h> // bool type
 typedef char tinyint; // to only use a byte a coords range from 0 to 9
+typedef char direction;
+typedef char action;
 
 typedef struct Boat {
-	int type;
-	int cells;
+	tinyint type;
+	tinyint cells;
 } Boat;
 
 typedef struct GameState {
-	int nplayers;
-	int win;
+	tinyint nplayers;
+	tinyint win;
 	int turn;
 	Player* players;
 } GameState;
@@ -19,12 +21,12 @@ typedef struct GameState {
 typedef struct Player {
 	tinyint id;
 	bool** scans;
-	char** actions;
+	action** actions;
 	Boat*** map;
 	Boat* boats;
 } Player;
 
-GameState newGameState(int nplayers);
+GameState newGameState(tinyint nplayers);
 Player newPlayer(tinyint id);
 
 

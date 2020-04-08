@@ -40,7 +40,7 @@ void checkstart()
 	}
 }
 
-void textcolor(int color)
+void text_color(int color)
 {
 	if(color > 7) init_pair(pair++, color, bg);
 
@@ -53,7 +53,7 @@ void textcolor(int color)
 	attron(COLOR_PAIR(fg));
 }
 
-void textbackground(int color)
+void text_background(int color)
 {
 	checkstart();
 

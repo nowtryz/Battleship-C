@@ -7,20 +7,20 @@ bool parseCoords(char* chain, tinyint* x, tinyint* y)
     if(chain[1] >= '0' && chain[2] != '0' && chain[1] <= '9') *x = chain[1] - '1';
     // test 10
     else if (chain[1] == '1' && chain[2] == '0') *x = 9;
-    else return FALSE;
+    else return false;
 
 	if     (chain[0] >= 'A' && chain[0] <= 'J') *y = chain[0] - 'A';
 	else if(chain[0] >= 'a' && chain[0] <= 'j') *y = chain[0] - 'a';
-	else return FALSE;
+	else return false;
 
-	return TRUE;
+	return true;
 }
 
 bool checkBoats(Boat boats[])
 {
     Boat boat;
     foreach(boat, boats) {
-        if (boat.cells > 0) return TRUE;
+        if (boat.cells > 0) return true;
     }
 	//return (player->boats[CARRIER].cells > 0 
 	//	|| boats[player][CRUISER].cells > 0 
@@ -39,7 +39,7 @@ int checkCell(Player* player, tinyint x, tinyint y)
 
 char getMapChar(Player* player, Player* target, int x, int y)
 {
-	char action = target->actions[x][y];
+	action action = target->actions[x][y];
 	Boat* boat = player->map[x][y];
 
 	if(action != NONE) return action;
@@ -50,12 +50,12 @@ char getMapChar(Player* player, Player* target, int x, int y)
 
 char getActionsChar(Player* player, Player* target, int x, int y)
 {
-	char action = player->actions[x][y];
-	int scan = player->scans[x][y];
-	Boat* boat = scan == TRUE ? target->map[x][y] : NULL;
+	action action = player->actions[x][y];
+	bool scan = player->scans[x][y];
+	Boat* boat = scan == true ? target->map[x][y] : NULL;
 
 	if(action != NONE) return action;
-	if(scan == TRUE)
+	if(scan == true)
 	{
 		if(boat != NULL) return BOATSIZE(boat) + '0';
 		else             return SCANNED;
@@ -87,7 +87,7 @@ void fillStorage(GameState* state)
 			{
 				player->actions[x][y] = NONE;
 				player->map[x][y] = NULL;
-				player->scans[x][y] = FALSE;
+				player->scans[x][y] = false;
 			}
 		}
 	}

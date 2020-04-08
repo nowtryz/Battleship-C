@@ -1,8 +1,8 @@
 #include "types.h"
 #include "constants.h"
 
-GameState newGameState(int nplayers) {
-    PlayerState players[2] = {newPlayerSate(), newPlayerSate()};
+GameState newGameState(tinyint nplayers) {
+    Player players[2] = {newPlayerSate(1), newPlayerSate(2)};
 
     GameState state = {
         .nplayers = nplayers,
@@ -14,13 +14,14 @@ GameState newGameState(int nplayers) {
     return state;
 }
 
-PlayerState newPlayerSate() {
-    bool scans[10][10] = {{{FALSE}}};
-    char actions[10][10] = {{{NONE}}};
-    Boat* map[10][10] = {{{NULL}}};
+Player newPlayerSate(tinyint id) {
+    bool scans[10][10] = {{{ false }}};
+    action actions[10][10] = {{{ NONE }}};
+    Boat* map[10][10] = {{{ NULL }}};
     Boat boats[BOATCOUNT] = INITIALBOATS;
 
-    PlayerState state = {
+    Player state = {
+        .id = id,
         .scans = scans,
         .actions = actions,
         .map = map,

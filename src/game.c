@@ -1,9 +1,12 @@
 #include "game.h"
 #include "constants.h"
+#include "place.h"
 
 void game(tinyint player_count)
 {
 	GameState state = newGameState(player_count);
+
+	place(&state);
 
 	printf("\n\nLa partie commence !\n====================\n\n");
 
@@ -18,17 +21,15 @@ void game(tinyint player_count)
 			printf("\n\nLe joueur 2 gagne la partie !\n");
 
 			state.win = 1;
-		} /*else if(nplayers == 1 && triggerAIturn()) {
+		} /*else if(nplayers == 1 && triggerAIturn(&state)) {
 			printf("L'IA gagne la partie !\n");
 
 			win = 1;
 		}*/
 	} while(state.win != 1);
-
-	main();
 }
 
-bool triggerNewTurn(int player_index, GameState* state)
+bool triggerNewTurn(tinyint player_index, GameState* state)
 {
 	tinyint coords[2] = {0};
     Player* target = &state->players[(player_index + 1)%2];;
@@ -41,12 +42,12 @@ bool triggerNewTurn(int player_index, GameState* state)
 	if(state->turn % 3 == 1)
 	{
 		printf("	Vous pouvez scanner une case avant de jouer votre tour, vous aurez de nouveau acces à votre carte avant de jouer\n");
-		disp(player, TRUE);
+		disp(player, true);
 		scan(player, target);
 	}
 
 	//Trigger attack
-	disp(player, TRUE);
+	disp(player, true);
 	asktargetedcell(player, &coords[0], &coords[1]);
 	attack = target->map[coords[0]][coords[1]];
 
@@ -87,19 +88,19 @@ void scan(Player* player, Player* target)
 
 		parseCoords(cell, &x, &y);
 
-		if(player->scans[x][y] == TRUE)
+		if(player->scans[x][y] == true)
 		{
 			printf("\n	Cette case a déjà été scannée !\n\n");
-			valid = FALSE;
+			valid = false;
 		}
 		if(!checkCell(player, x, y))
 		{
 			printf("\n	Cette case a déjà été attaquée ou est hors de la grille !\n\n");
-			valid = FALSE;
+			valid = false;
 		}
 	} while(!valid);
 
-	player->scans[x][y] = TRUE;
+	player->scans[x][y] = true;
 
 	scan = target->map[x][y];
 
