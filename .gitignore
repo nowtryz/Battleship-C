@@ -1,4 +1,4 @@
 **/*.o
 *.out
-game
-game.exe
+main
+main.exe

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "constants.h": "c",
+        "utils.h": "c",
+        "game.h": "c"
+    }
+}
